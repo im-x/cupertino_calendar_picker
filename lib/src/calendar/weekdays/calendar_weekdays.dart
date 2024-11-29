@@ -30,12 +30,26 @@ class CalendarWeekdays extends StatelessWidget {
     );
     return List<Widget>.generate(DateTime.daysPerWeek, (int index) {
       final DateTime date = firstDayOfWeekDate.addDays(index);
-      final String mediumDateString = localization.datePickerMediumDate(date);
-      final String weekday = mediumDateString.substring(0, 3);
+      String weekDay = '';
+      if (date.weekday == DateTime.sunday) {
+        weekDay = '周日';
+      } else if (date.weekday == DateTime.monday) {
+        weekDay = '周一';
+      } else if (date.weekday == DateTime.tuesday) {
+        weekDay = '周二';
+      } else if (date.weekday == DateTime.wednesday) {
+        weekDay = '周三';
+      } else if (date.weekday == DateTime.thursday) {
+        weekDay = '周四';
+      } else if (date.weekday == DateTime.friday) {
+        weekDay = '周五';
+      } else if (date.weekday == DateTime.saturday) {
+        weekDay = '周六';
+      }
 
       return Expanded(
         child: CalendarWeekday(
-          weekday: weekday.toUpperCase(),
+          weekday: weekDay,
           decoration: decoration,
         ),
       );
